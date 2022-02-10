@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/AnnotaionIV"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="28dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/ic_launcher_background"
+
+        />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:padding="10sp"
+        android:layout_marginBottom="150dp"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/AddAnnotationBtn"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+            app:icon="@android:drawable/ic_input_add"
+            app:iconGravity="start"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            app:iconTint="@color/ThemeLight"
+
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Add Annotaion"
+            android:backgroundTint="@color/Button1"
+            app:cornerRadius="10dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/UploadBtn"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+            app:icon="@android:drawable/ic_menu_upload"
+            app:iconGravity="start"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            app:iconTint="@color/ThemeLight"
+
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Upload"
+            android:backgroundTint="@color/Button2"
+            app:cornerRadius="10dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

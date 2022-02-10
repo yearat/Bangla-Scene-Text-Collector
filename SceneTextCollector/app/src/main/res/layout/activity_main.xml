@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/TitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SceneTextCollector"
+        android:textColor="@color/TextColor"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="50dp"
+        />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginBottom="150dp"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/CaptureBtn"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Capture A Picture"
+            android:backgroundTint="@color/Button1"
+            app:cornerRadius="10dp"
+            android:textAllCaps="false"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/RankBtn"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Ranklist"
+            android:backgroundTint="@color/Button2"
+            app:cornerRadius="10dp"
+            android:textAllCaps="false"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/LogoutBtn"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Logout"
+            android:backgroundTint="@color/ThemeLight"
+            app:cornerRadius="10dp"
+            android:textAllCaps="false"
+            />
+
+        <Button
+            android:id="@+id/ContactBtn"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Contact"
+            android:textSize="20sp"
+            android:background="@drawable/custom_button"
+            android:textAllCaps="false"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/LoggedInAsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logged In As:"
+            android:layout_gravity="center"
+            android:textColor="@color/TextColor"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/UserEmailTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="None"
+            android:layout_gravity="center"
+            android:textColor="@color/TextColor"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/UserIdTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="None"
+            android:layout_gravity="center"
+            android:textColor="@color/TextColor"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="50dp"
+            />
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

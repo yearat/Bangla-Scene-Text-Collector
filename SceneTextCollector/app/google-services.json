@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "478957988683",
+    "project_id": "bn-scn-txt",
+    "storage_bucket": "bn-scn-txt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478957988683:android:ddedeb8ab93186835816ce",
+        "android_client_info": {
+          "package_name": "com.tnrlab.scenetextcollector"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "478957988683-73021h75tgga5e1gcrdlsilvhlmqiqov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHV3X-K8iovz2FO_XZFYjDy6Ihn4rsb9M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478957988683-73021h75tgga5e1gcrdlsilvhlmqiqov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

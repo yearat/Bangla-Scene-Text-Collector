@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+   <!-- <ImageView
+        android:id="@+id/MainIV"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/ic_launcher_background"
+
+        /> -->
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:padding="10sp"
+        android:layout_marginBottom="150dp"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/CameraBtn"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+            app:icon="@android:drawable/ic_menu_camera"
+            app:iconGravity="start"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            app:iconTint="@color/ThemeLight"
+
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Camera"
+            android:backgroundTint="@color/Button1"
+            app:cornerRadius="10dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/GalleryBtn"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+            app:icon="@android:drawable/ic_menu_gallery"
+            app:iconGravity="start"
+            android:textAlignment="center"
+            app:iconTint="@color/ThemeLight"
+            android:textColor="@color/white"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Gallery"
+            android:backgroundTint="@color/Button2"
+            app:cornerRadius="10dp"
+            android:textAllCaps="false"
+            />
+
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
