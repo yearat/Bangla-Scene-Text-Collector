@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,14 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SceneTextCollector">
         <activity
+            android:name=".DrawAndLabel"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".UploadDetails"
+            android:exported="false" />
+        <activity
             android:name=".RegisterPage"
             android:exported="false" />
         <activity
             android:name=".LoginPage"
             android:exported="true"
-            android:parentActivityName=".Login">
-
-        </activity>
+            android:parentActivityName=".Login" />
         <activity
             android:name=".Login"
             android:exported="true"
@@ -45,9 +54,15 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
+        <provider
+            android:authorities="com.tnrlab.scenetextcollector.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

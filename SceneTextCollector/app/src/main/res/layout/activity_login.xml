@@ -38,7 +38,7 @@
             app:iconTint="@color/ThemeLight"
             app:iconGravity="start"
             android:textAlignment="center"
-            android:text="Login With Google"
+            android:text="Sign Up/In with Email"
             android:textColor="@color/white"
             android:backgroundTint="@color/GoogleLogin"
             app:cornerRadius="10dp"

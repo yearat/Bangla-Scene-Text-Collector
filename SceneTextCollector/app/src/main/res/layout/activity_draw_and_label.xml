@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:autoLink="web"
+        android:text="Draw Boxes"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/addLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Labels"
+        android:backgroundTint="@color/Button1"
+        />
+
+    <Button
+        android:id="@+id/resetBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:backgroundTint="@color/Button2" />
+
+    <Button
+        android:id="@+id/testBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test A Function" />
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:backgroundTint="@color/Button1"
+        />
+
+    <TextView
+        android:id="@+id/sourceUri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sourceUri" />
+    <TextView
+        android:id="@+id/printTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status: "
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/objectCountTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Objects: "/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@android:color/background_dark"
+            android:scaleType="centerCrop" />
+        <ImageView
+            android:id="@+id/drawingPaneIv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_alignLeft="@id/imageView"
+            android:layout_alignTop="@id/imageView"
+            android:layout_alignRight="@id/imageView"
+            android:layout_alignBottom="@id/imageView"/>
+
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

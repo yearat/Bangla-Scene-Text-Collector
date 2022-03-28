@@ -3,18 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Yearat/SceneTextCollector/app/src/main/res/layout/activity_draw_and_label.xml" value="0.27898550724637683" />
         <entry key="app/src/main/res/drawable/custom_button.xml" value="0.2861111111111111" />
         <entry key="app/src/main/res/layout/activity_capture_image.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_draw_and_label.xml" value="0.3496376811594203" />
         <entry key="app/src/main/res/layout/activity_image_annotation.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.30364583333333334" />
         <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_rank_list.xml" value="0.18055555555555555" />
         <entry key="app/src/main/res/layout/activity_register_page.xml" value="0.1016949152542373" />
+        <entry key="app/src/main/res/layout/activity_upload_details.xml" value="0.4411231884057971" />
+        <entry key="app/src/main/res/layout/fragment_labelling.xml" value="0.3496376811594203" />
+        <entry key="app/src/main/res/xml/file_paths.xml" value="0.1287037037037037" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

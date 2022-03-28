@@ -72,6 +72,18 @@
             android:layout_marginBottom="10dp"
             />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/testAFunctionBtn"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="test a function"
+            android:backgroundTint="@color/Button1"
+            app:cornerRadius="10dp"
+            android:textAllCaps="false"
+            />
+
+
         <TextView
             android:id="@+id/LoggedInAsTv"
             android:layout_width="wrap_content"
