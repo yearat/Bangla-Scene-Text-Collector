@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Camera
+import android.location.Location
 import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.get
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.Task
 import java.io.File
 import java.io.FileWriter
 import java.io.IOException
@@ -26,9 +30,13 @@ import java.io.IOException
 // ANOTHER ACTIVITY USES THE IMAGE HENCE DECLARED GLOBAL
 var picture: Bitmap? = null
 var textFile: File? = null
-
+var latitude: String? =null
+var longitude: String? = null
 
 class CaptureImage : AppCompatActivity() {
+
+    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
 
   // val CameraBtn = findViewById<Button>(R.id.CameraBtn)
     private var selectedImageFileURI: Uri? = null
@@ -41,7 +49,8 @@ class CaptureImage : AppCompatActivity() {
         setContentView(R.layout.activity_capture_image)
 
 
-       // CameraBtn.isEnabled = false
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        fetchLocation()
 
         // HANDLING PERMISSIONS FOR CAMERA
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
@@ -83,7 +92,7 @@ class CaptureImage : AppCompatActivity() {
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 // Select Image
                 val galleryIntent = Intent(
-                    Intent.ACTION_PICK,
+                    Intent.ACTION_OPEN_DOCUMENT,
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                 )
                 startActivityForResult(galleryIntent, 222)
@@ -95,6 +104,27 @@ class CaptureImage : AppCompatActivity() {
         }
 
     } // OnCreate Func
+
+    private  fun fetchLocation() {
+
+        val task: Task<Location> = fusedLocationProviderClient.lastLocation
+
+        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
+            return
+        }
+        task.addOnSuccessListener {
+            if(it != null){
+                latitude = it.latitude.toString()
+                longitude = it.longitude.toString()
+                Toast.makeText(applicationContext, "${it.latitude} and ${it.longitude}", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

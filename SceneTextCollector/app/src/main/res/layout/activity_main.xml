@@ -38,16 +38,16 @@
             android:textAllCaps="false"
             />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/RankBtn"
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="Ranklist"
-            android:backgroundTint="@color/Button2"
-            app:cornerRadius="10dp"
-            android:textAllCaps="false"
-            />
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/RankBtn"-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Ranklist"-->
+<!--            android:backgroundTint="@color/Button2"-->
+<!--            app:cornerRadius="10dp"-->
+<!--            android:textAllCaps="false"-->
+<!--            />-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/LogoutBtn"
@@ -70,18 +70,19 @@
             android:background="@drawable/custom_button"
             android:textAllCaps="false"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
             />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/testAFunctionBtn"
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="test a function"
-            android:backgroundTint="@color/Button1"
-            app:cornerRadius="10dp"
-            android:textAllCaps="false"
-            />
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/testAFunctionBtn"-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="test a function"-->
+<!--            android:backgroundTint="@color/Button1"-->
+<!--            app:cornerRadius="10dp"-->
+<!--            android:textAllCaps="false"-->
+<!--            />-->
 
 
         <TextView

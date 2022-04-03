@@ -120,7 +120,14 @@ class DrawAndLabel : AppCompatActivity() {
 
 
         nextBtn.setOnClickListener() {
-            if ((textUri != null) && (objectCount != 0) && (labelCount == objectCount)) {
+//            if(labeling==false) {
+//                Toast.makeText(
+//                    this,
+//                    "Please confirm labels first",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+            if ((textUri != null) && (objectCount != 0) && (labelCount == objectCount) && (labeling==false)) {
                 writeToTextFile()
                 var intent = Intent(this, ImageAnnotation::class.java)
                 intent.putExtra("ImageUri", imageUri)

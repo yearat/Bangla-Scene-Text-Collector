@@ -16,17 +16,13 @@ import org.w3c.dom.Text
 
 class UploadDetails : AppCompatActivity() {
 
-    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    var latitude: String? =null
-    var longitude: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_details)
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
-        fetchLocation()
 
         val UploadUserIdTv = findViewById<TextView>(R.id.UploadUserIdTv)
         val UploadLocationTv = findViewById<TextView>(R.id.UploadLocationTv)
@@ -40,29 +36,10 @@ class UploadDetails : AppCompatActivity() {
         val ImageLink = intent.getStringExtra("ImageLink")
         UploadImageLinkTv.text = "Image Link: $ImageLink"
 
-        UploadLocationTv.text = " $latitude and $longitude "
+        //UploadLocationTv.text = " $latitude and $longitude "
 
 
     }
 
-    private  fun fetchLocation() {
 
-        val task: Task<Location> = fusedLocationProviderClient.lastLocation
-
-        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
-            return
-        }
-        task.addOnSuccessListener {
-            if(it != null){
-                latitude = {it.latitude}.toString()
-                longitude = {it.longitude}.toString()
-                Toast.makeText(applicationContext, "${it.latitude} and ${it.longitude}", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
 }
