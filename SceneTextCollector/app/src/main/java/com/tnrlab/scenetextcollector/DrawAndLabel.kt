@@ -315,6 +315,7 @@ class DrawAndLabel : AppCompatActivity() {
             println("end: ${anObject.endx}, ${anObject.endy}")
             println("label: ${anObject.label}")
         }
+
     }
 
     // This invokes the fragment as the user touches an drawn object

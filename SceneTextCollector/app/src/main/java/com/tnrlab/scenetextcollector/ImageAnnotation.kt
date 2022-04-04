@@ -7,10 +7,9 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.webkit.MimeTypeMap
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -42,11 +41,16 @@ class ImageAnnotation : AppCompatActivity() {
 
         val UploadBtn = findViewById<Button>(R.id.UploadBtn)
         val AddAnnotationBtn = findViewById<Button>(R.id.AddAnnotationBtn)
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        val progressBarTv = findViewById<TextView>(R.id.progressBarTv)
         var ImageFileLink: String? = null
         var TextFileLink: String? = null
         var imageFileName : String? = null
         var textFileName : String? = null
         val currentTime = System.currentTimeMillis()
+
+        progressBar.visibility = View.GONE
+        progressBarTv.visibility = View.GONE
 
         AddAnnotationBtn.setOnClickListener{
             uploadToDatabase(userId!!.toString(),
@@ -59,6 +63,8 @@ class ImageAnnotation : AppCompatActivity() {
                 longitude!!)
         }
 
+
+
         UploadBtn.setOnClickListener{
 
 
@@ -69,14 +75,20 @@ class ImageAnnotation : AppCompatActivity() {
 
                 imageFileName = userEmail + currentTime + "." + imageExtension
 
+//                val sRef : StorageReference = FirebaseStorage.getInstance().reference.child(
+//                    imageFileName!!
+//                )
                 val sRef : StorageReference = FirebaseStorage.getInstance().reference.child(
-                    imageFileName!!
+                    "collected_data/${imageFileName!!}"
                 )
 
                 textFileName = userEmail + currentTime + ".txt"
 
+//                val sRef2 : StorageReference = FirebaseStorage.getInstance().reference.child(
+//                    textFileName!!
+//                )
                 val sRef2 : StorageReference = FirebaseStorage.getInstance().reference.child(
-                    textFileName!!
+                    "collected_data/${textFileName!!}"
                 )
 
                 sRef.putFile(imageUri!!)
@@ -95,22 +107,45 @@ class ImageAnnotation : AppCompatActivity() {
                             }
                     }
 
+                progressBar.visibility = View.VISIBLE
+                progressBarTv.visibility = View.VISIBLE
+
+
+//                sRef2.putFile(textUri!!)
+//                    .addOnSuccessListener { taskSnapshot ->
+//                        taskSnapshot.metadata!!.reference!!.downloadUrl
+//                            .addOnSuccessListener { url ->
+//                              //  Toast.makeText(this, "Uploaded to: $url", Toast.LENGTH_LONG).show()
+//                                TextFileLink = url.toString()
+//                            }.addOnFailureListener{ exception ->
+//                                Toast.makeText(
+//                                    this,
+//                                    exception.message,
+//                                    Toast.LENGTH_LONG
+//                                ).show()
+//                                Log.e(javaClass.simpleName, exception.message, exception)
+//                            }
+//                    }
+
                 sRef2.putFile(textUri!!)
                     .addOnSuccessListener { taskSnapshot ->
                         taskSnapshot.metadata!!.reference!!.downloadUrl
                             .addOnSuccessListener { url ->
-                              //  Toast.makeText(this, "Uploaded to: $url", Toast.LENGTH_LONG).show()
+                                //  Toast.makeText(this, "Uploaded to: $url", Toast.LENGTH_LONG).show()
                                 TextFileLink = url.toString()
-                                //uploadToDatabase(uid!!, emailId!!, imageFileName!!, ImageFileLink!!, textFileName!!, TextFileLink!!, latitude!!, longitude!!)
-//                                uploadToDatabase(userId!!.toString(),
-//                                    userEmail!!,
-//                                    imageFileName!!,
-//                                    ImageFileLink!!,
-//                                    textFileName!!,
-//                                    TextFileLink!!,
-//                                    latitude!!,
-//                                    longitude!!)
-                                //testUpload("pritom", "p@apurba.com")
+
+                                uploadToDatabase(userId!!.toString(),
+                                    userEmail!!,
+                                    imageFileName!!,
+                                    ImageFileLink!!,
+                                    textFileName!!,
+                                    TextFileLink!!,
+                                    latitude!!,
+                                    longitude!!)
+
+                                progressBar.progress = 0
+                                progressBarTv.text = "Uploaded 100%"
+
                             }.addOnFailureListener{ exception ->
                                 Toast.makeText(
                                     this,
@@ -119,7 +154,13 @@ class ImageAnnotation : AppCompatActivity() {
                                 ).show()
                                 Log.e(javaClass.simpleName, exception.message, exception)
                             }
+                    }.addOnProgressListener{ taskSnapshot ->
+                        val progress = (100*taskSnapshot.bytesTransferred)/taskSnapshot.totalByteCount
+                        progressBar.progress = progress.toInt()
+                        progressBarTv.text = "${progress} %"
                     }
+
+
 
 
                 // Uploading Done, Going to a new activity
@@ -168,6 +209,9 @@ class ImageAnnotation : AppCompatActivity() {
             }.addOnFailureListener {
                 Toast.makeText(this, "Failed to save", Toast.LENGTH_SHORT).show()
             }
+        }
+        else {
+            Toast.makeText(this, "Found a null in uploadToDatabase()", Toast.LENGTH_SHORT).show()
         }
     }
 
