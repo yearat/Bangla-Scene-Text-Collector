@@ -1,6 +1,8 @@
 package com.tnrlab.scenetextcollector
 
 import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -16,6 +18,8 @@ import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -23,6 +27,7 @@ import androidx.core.graphics.get
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
+import com.theartofdev.edmodo.cropper.CropImage
 import java.io.File
 import java.io.FileWriter
 import java.io.IOException
@@ -35,6 +40,19 @@ var textFile: File? = null
 class CaptureImage : AppCompatActivity() {
 
 
+    private val cropActivityResultContracts = object :
+        ActivityResultContract<Any?, Uri?>() {
+        override fun createIntent(context: Context, input: Any?): Intent {
+            return CropImage.activity()
+                .setAspectRatio(16, 9)
+                .getIntent(this@CaptureImage)
+        }
+
+        override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
+            return CropImage.getActivityResult(intent)?.uri
+        }
+
+    }
 
 
   // val CameraBtn = findViewById<Button>(R.id.CameraBtn)
@@ -42,12 +60,22 @@ class CaptureImage : AppCompatActivity() {
     private var capturedImageFileURI: Uri? = null
     private var currentPhotoPath: String? = null
     private var textFileURI: Uri? = null
+    private var cropUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_capture_image)
 
-
+        lateinit var cropActivityResultLauncher : ActivityResultLauncher<Any?>
+        cropActivityResultLauncher = registerForActivityResult(cropActivityResultContracts) {
+            it?.let{
+                cropUri = it
+            }
+        }
+        val CropBtn = findViewById<Button>(R.id.CropBtn)
+        CropBtn.setOnClickListener{
+            cropActivityResultLauncher.launch(null)
+        }
 
 
         // HANDLING PERMISSIONS FOR CAMERA
@@ -173,3 +201,4 @@ class CaptureImage : AppCompatActivity() {
     }
 
 }
+
