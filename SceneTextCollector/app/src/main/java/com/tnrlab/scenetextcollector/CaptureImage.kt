@@ -30,12 +30,11 @@ import java.io.IOException
 // ANOTHER ACTIVITY USES THE IMAGE HENCE DECLARED GLOBAL
 var picture: Bitmap? = null
 var textFile: File? = null
-var latitude: String? =null
-var longitude: String? = null
+
 
 class CaptureImage : AppCompatActivity() {
 
-    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
 
 
   // val CameraBtn = findViewById<Button>(R.id.CameraBtn)
@@ -49,14 +48,13 @@ class CaptureImage : AppCompatActivity() {
         setContentView(R.layout.activity_capture_image)
 
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        fetchLocation()
+
 
         // HANDLING PERMISSIONS FOR CAMERA
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 111)
         } else {
-         //  CameraBtn.isEnabled = trueload bitmap image from uri
+         //  CameraBtn.isEnabled = true load bitmap image from uri
         }
 
         val CameraBtn = findViewById<Button>(R.id.CameraBtn)
@@ -105,26 +103,7 @@ class CaptureImage : AppCompatActivity() {
 
     } // OnCreate Func
 
-    private  fun fetchLocation() {
 
-        val task: Task<Location> = fusedLocationProviderClient.lastLocation
-
-        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
-            return
-        }
-        task.addOnSuccessListener {
-            if(it != null){
-                latitude = it.latitude.toString()
-                longitude = it.longitude.toString()
-                Toast.makeText(applicationContext, "${it.latitude} and ${it.longitude}", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -159,11 +138,7 @@ class CaptureImage : AppCompatActivity() {
                     var storageDirectory: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
                     textFile = File.createTempFile("Text", ".txt", storageDirectory)
                     textFileURI = FileProvider.getUriForFile(this, "com.tnrlab.scenetextcollector.fileprovider", textFile!!)
-                   /*
-                   var intent = Intent(this, ImageAnnotation::class.java)
-                    intent.putExtra("ImageUri", mSelectedImageFileURI)
-                    startActivity(intent)
-                    */
+
                     var intent = Intent(this, DrawAndLabel::class.java)
                     intent.putExtra("ImageUri", selectedImageFileURI)
                     intent.putExtra("TextUri", textFileURI)

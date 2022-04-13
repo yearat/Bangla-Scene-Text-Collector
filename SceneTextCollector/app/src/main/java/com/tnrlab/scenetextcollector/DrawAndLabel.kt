@@ -14,7 +14,6 @@ import android.widget.TextView
 import android.widget.Toast
 import java.io.FileNotFoundException
 import java.io.FileWriter
-import java.net.URI
 
 
 /*
@@ -129,7 +128,7 @@ class DrawAndLabel : AppCompatActivity() {
 //            }
             if ((textUri != null) && (objectCount != 0) && (labelCount == objectCount) && (labeling==false)) {
                 writeToTextFile()
-                var intent = Intent(this, ImageAnnotation::class.java)
+                var intent = Intent(this, Upload::class.java)
                 intent.putExtra("ImageUri", imageUri)
                 intent.putExtra("TextUri", textUri)
                 startActivity(intent)
@@ -212,6 +211,11 @@ class DrawAndLabel : AppCompatActivity() {
     class drawnObject(var startx: Int, var starty: Int, var endx: Int, var endy:Int, var label: String)
 
     private fun projectXY(iv: ImageView, bm: Bitmap, x: Int, y: Int): projectPt? {
+
+        println("ImageView height: ${iv.height} width: ${iv.width}")
+        println("Bitmap height: ${bm.height} width: ${bm.width}")
+
+
         if (x < 0 || y < 0 || x > iv.width || y > iv.height) {
             //outside ImageView
             return null

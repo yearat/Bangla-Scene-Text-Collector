@@ -1,6 +1,5 @@
 package com.tnrlab.scenetextcollector
 
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.net.Uri
@@ -14,21 +13,24 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-class ImageAnnotation : AppCompatActivity() {
+class Upload : AppCompatActivity() {
 
-
+    var latitude: String? =null
+    var longitude: String? = null
+    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_image_annotation)
+        setContentView(R.layout.activity_upload)
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        fetchLocation()
 
 
         val imageUri = intent.getParcelableExtra<Uri>("ImageUri")
@@ -54,13 +56,19 @@ class ImageAnnotation : AppCompatActivity() {
 
         AddAnnotationBtn.setOnClickListener{
             uploadToDatabase(userId!!.toString(),
-                userEmail!!,
-                imageFileName!!,
-                ImageFileLink!!,
-                textFileName!!,
-                TextFileLink!!,
-                latitude!!,
-                longitude!!)
+            userEmail!!,
+            imageFileName!!,
+            ImageFileLink!!,
+            textFileName!!,
+            TextFileLink!!,
+            latitude!!,
+            longitude!!)
+
+            latitude = null
+            longitude = null
+
+            progressBar.progress = 0
+            progressBarTv.text = "Uploaded 100%"
         }
 
 
@@ -75,18 +83,14 @@ class ImageAnnotation : AppCompatActivity() {
 
                 imageFileName = userEmail + currentTime + "." + imageExtension
 
-//                val sRef : StorageReference = FirebaseStorage.getInstance().reference.child(
-//                    imageFileName!!
-//                )
+
                 val sRef : StorageReference = FirebaseStorage.getInstance().reference.child(
                     "collected_data/${imageFileName!!}"
                 )
 
                 textFileName = userEmail + currentTime + ".txt"
 
-//                val sRef2 : StorageReference = FirebaseStorage.getInstance().reference.child(
-//                    textFileName!!
-//                )
+
                 val sRef2 : StorageReference = FirebaseStorage.getInstance().reference.child(
                     "collected_data/${textFileName!!}"
                 )
@@ -111,40 +115,24 @@ class ImageAnnotation : AppCompatActivity() {
                 progressBarTv.visibility = View.VISIBLE
 
 
-//                sRef2.putFile(textUri!!)
-//                    .addOnSuccessListener { taskSnapshot ->
-//                        taskSnapshot.metadata!!.reference!!.downloadUrl
-//                            .addOnSuccessListener { url ->
-//                              //  Toast.makeText(this, "Uploaded to: $url", Toast.LENGTH_LONG).show()
-//                                TextFileLink = url.toString()
-//                            }.addOnFailureListener{ exception ->
-//                                Toast.makeText(
-//                                    this,
-//                                    exception.message,
-//                                    Toast.LENGTH_LONG
-//                                ).show()
-//                                Log.e(javaClass.simpleName, exception.message, exception)
-//                            }
-//                    }
-
                 sRef2.putFile(textUri!!)
                     .addOnSuccessListener { taskSnapshot ->
                         taskSnapshot.metadata!!.reference!!.downloadUrl
                             .addOnSuccessListener { url ->
-                                //  Toast.makeText(this, "Uploaded to: $url", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this, "Uploaded to: $url", Toast.LENGTH_LONG).show()
                                 TextFileLink = url.toString()
 
-                                uploadToDatabase(userId!!.toString(),
-                                    userEmail!!,
-                                    imageFileName!!,
-                                    ImageFileLink!!,
-                                    textFileName!!,
-                                    TextFileLink!!,
-                                    latitude!!,
-                                    longitude!!)
-
-                                progressBar.progress = 0
-                                progressBarTv.text = "Uploaded 100%"
+//                                uploadToDatabase(userId!!.toString(),
+//                                    userEmail!!,
+//                                    imageFileName!!,
+//                                    ImageFileLink!!,
+//                                    textFileName!!,
+//                                    TextFileLink!!,
+//                                    latitude!!,
+//                                    longitude!!)
+//
+//                                progressBar.progress = 0
+//                                progressBarTv.text = "Uploaded 100%"
 
                             }.addOnFailureListener{ exception ->
                                 Toast.makeText(
@@ -215,18 +203,25 @@ class ImageAnnotation : AppCompatActivity() {
         }
     }
 
-//    class User(val username: String? = null, val email: String? = null)
-//
-//    private fun testUpload(name: String, email: String) {
-//        val user = User(name, email)
-//
-//
-//        val database : DatabaseReference = FirebaseDatabase.getInstance("https://bn-scn-txt-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("data")
-//
-//        database.child(name).setValue(user).addOnSuccessListener {
-//            Toast.makeText(this, "Successfully saved", Toast.LENGTH_SHORT).show()
-//        }.addOnFailureListener{
-//            Toast.makeText(this, "Failed to save", Toast.LENGTH_SHORT).show()
-//        }
-//    }
+    private  fun fetchLocation() {
+
+        val task: Task<Location> = fusedLocationProviderClient.lastLocation
+
+        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
+            return
+        }
+        task.addOnSuccessListener {
+            if(it != null){
+                latitude = it.latitude.toString()
+                longitude = it.longitude.toString()
+                Toast.makeText(applicationContext, "${it.latitude} and ${it.longitude}", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
 }

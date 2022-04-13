@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ImageAnnotation"
+            android:name=".Upload"
             android:exported="true"
             android:parentActivityName=".CaptureImage" />
         <activity
