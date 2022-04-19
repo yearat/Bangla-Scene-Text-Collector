@@ -1,35 +1,26 @@
 package com.tnrlab.scenetextcollector
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Camera
-import android.location.Location
-import android.media.Image
+import android.media.ExifInterface
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.graphics.get
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.tasks.Task
 import com.theartofdev.edmodo.cropper.CropImage
 import java.io.File
-import java.io.FileWriter
 import java.io.IOException
 
 // ANOTHER ACTIVITY USES THE IMAGE HENCE DECLARED GLOBAL
@@ -98,9 +89,6 @@ class CaptureImage : AppCompatActivity() {
                textFile = File.createTempFile(fileName, ".txt", storageDirectory)
                textFileURI = FileProvider.getUriForFile(this, "com.tnrlab.scenetextcollector.fileprovider", textFile!!)
 
-               /*val fileWriter = FileWriter(textFile)
-               fileWriter.write("Testing")
-               fileWriter.flush()*/
 
                var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                intent.putExtra(MediaStore.EXTRA_OUTPUT, capturedImageFileURI)
@@ -137,9 +125,9 @@ class CaptureImage : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         // Request result for Camera
         if(requestCode == 101) {
-            //picture = data?.getParcelableExtra<Bitmap>("data")
             // SENDING THE IMAGE TO ANNOTATION ACTIVITY
-             picture = BitmapFactory.decodeFile(currentPhotoPath)
+            picture = BitmapFactory.decodeFile(currentPhotoPath)
+
             if(picture != null) {
                 var intent = Intent(this,DrawAndLabel::class.java)
                 intent.putExtra("ImageUri", capturedImageFileURI)
@@ -149,10 +137,7 @@ class CaptureImage : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Error camera onactivityResult", Toast.LENGTH_SHORT).show()
             }
-           /* picture = BitmapFactory.decodeFile(currentPhotoPath)
-            var intent = Intent(this, DrawAndLabel::class.java)
-            startActivity(intent)
-            finish() */
+
 
         }
         // Request result for Gallery

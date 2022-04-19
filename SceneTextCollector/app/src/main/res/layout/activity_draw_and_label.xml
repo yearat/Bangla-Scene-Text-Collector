@@ -64,25 +64,28 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        >
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="1000px"
+            android:layout_height="1000px"
             android:adjustViewBounds="true"
             android:background="@android:color/background_dark"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true" />
         <ImageView
             android:id="@+id/drawingPaneIv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="1000px"
+            android:layout_height="1000px"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:layout_alignLeft="@id/imageView"
             android:layout_alignTop="@id/imageView"
             android:layout_alignRight="@id/imageView"
-            android:layout_alignBottom="@id/imageView"/>
+            android:layout_alignBottom="@id/imageView" />
 
     </RelativeLayout>
 

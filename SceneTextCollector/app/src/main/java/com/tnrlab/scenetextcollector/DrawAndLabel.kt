@@ -340,20 +340,10 @@ class DrawAndLabel : AppCompatActivity() {
             // We will now try loading from SD card
             lateinit var tempBitmap: Bitmap
 
-            /*if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-               val imgFile = File("/mnt/sdcard/Download/catflower.jpg")
-                println(imgFile.absolutePath)
-                if (imgFile.exists()) {
-                    tempBitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
+            //tempBitmap = picture!! // This was original
 
-                }
-            }
-            else {
-                // Request For Permission
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 121)
-            } */
-
-            tempBitmap = picture!!
+            // This resizes the image
+            tempBitmap = Bitmap.createScaledBitmap(picture!!, 1000, 1000, true)
 
 
 
@@ -401,9 +391,9 @@ class DrawAndLabel : AppCompatActivity() {
                 println("end: ${anObject.endx}, ${anObject.endy}")
                 println("label: ${anObject.label}")
 
-                fileWriter.write("label: ${anObject.label}, " +
-                        "start: ${anObject.startx}, ${anObject.starty}, " +
-                        "end: ${anObject.endx}, ${anObject.endy}" +
+                fileWriter.write("${anObject.label}, " +
+                        "${anObject.startx}, ${anObject.starty}, " +
+                        "${anObject.endx}, ${anObject.endy}" +
                         "\n")
             }
 
