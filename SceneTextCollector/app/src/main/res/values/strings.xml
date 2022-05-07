@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">SceneTextCollector</string>
     <string name="scenetextcollector">SceneTextCollector</string>
+    <string name="aboutString">The SceneTextCollector application is developed and maintained by TNR Lab, North South University.
+        The application is a part of a research project which is focused to generate a large Bengali scene text dataset via crowdsourcing approach.
+        For any queries, contact:</string>
+    <string name="contactEmail">yearat.hossain@northsouth.edu</string>
 </resources>

@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 //        val RankBtn = findViewById<Button>(R.id.RankBtn)
         val LogoutBtn = findViewById<Button>(R.id.LogoutBtn)
 //        val testAFunctionBtn = findViewById<Button>(R.id.testAFunctionBtn)
+        val AboutBtn = findViewById<Button>(R.id.AboutBtn)
 
         CaptureBtn.setOnClickListener {
             val intent = Intent(this, CaptureImage::class.java)
@@ -34,6 +35,11 @@ class MainActivity : AppCompatActivity() {
 
         LogoutBtn.setOnClickListener {
             val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+        }
+
+        AboutBtn.setOnClickListener{
+            val intent = Intent(this, about::class.java)
             startActivity(intent)
         }
 

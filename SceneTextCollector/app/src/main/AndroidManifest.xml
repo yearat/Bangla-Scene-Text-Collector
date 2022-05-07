@@ -15,12 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SceneTextCollector">
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"/>
+        <activity
+            android:name=".about"
+            android:exported="false" />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
         <activity
             android:name=".DrawAndLabel"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".UploadDetails"
             android:exported="false" />
@@ -56,12 +58,14 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
         <provider
-            android:authorities="com.tnrlab.scenetextcollector.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.tnrlab.scenetextcollector.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
     </application>

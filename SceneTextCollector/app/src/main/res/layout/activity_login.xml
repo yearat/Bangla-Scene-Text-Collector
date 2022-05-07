@@ -34,7 +34,7 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
-            app:icon="@android:drawable/ic_media_rew"
+            app:icon="@android:drawable/ic_dialog_email"
             app:iconTint="@color/ThemeLight"
             app:iconGravity="start"
             android:textAlignment="center"

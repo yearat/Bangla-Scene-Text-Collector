@@ -61,11 +61,11 @@
             />
 
         <Button
-            android:id="@+id/ContactBtn"
+            android:id="@+id/AboutBtn"
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="Contact"
+            android:text="About"
             android:textSize="20sp"
             android:background="@drawable/custom_button"
             android:textAllCaps="false"
