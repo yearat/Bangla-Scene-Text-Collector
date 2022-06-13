@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Yearat/SceneTextCollector/app/src/main/res/layout/activity_about.xml" value="0.1" />
+        <entry key="..\:/Yearat/SceneTextCollector/app/src/main/res/layout/activity_about.xml" value="0.22" />
         <entry key="..\:/Yearat/SceneTextCollector/app/src/main/res/layout/activity_capture_image.xml" value="0.17831813576494426" />
         <entry key="..\:/Yearat/SceneTextCollector/app/src/main/res/layout/activity_draw_and_label.xml" value="0.27898550724637683" />
         <entry key="..\:/Yearat/SceneTextCollector/app/src/main/res/layout/activity_image_annotation.xml" value="0.1" />
         <entry key="..\:/Yearat/SceneTextCollector/app/src/main/res/layout/activity_login.xml" value="0.1707193515704154" />
+        <entry key="..\:/Yearat/SceneTextCollector/app/src/main/res/layout/activity_login_page.xml" value="0.20969202898550723" />
         <entry key="..\:/Yearat/SceneTextCollector/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Yearat/SceneTextCollector/app/src/main/res/layout/activity_upload.xml" value="0.20969202898550723" />
         <entry key="app/src/main/res/drawable/custom_button.xml" value="0.2861111111111111" />
         <entry key="app/src/main/res/layout/activity_capture_image.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_draw_and_label.xml" value="0.3496376811594203" />

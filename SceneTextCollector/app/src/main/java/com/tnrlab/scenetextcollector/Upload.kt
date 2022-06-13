@@ -186,6 +186,7 @@ class Upload : AppCompatActivity() {
         println("latitude " + Lat)
         println("Longitude " + Long)
 
+        
 
         if(!Uid.isEmpty() && !Email.isEmpty() && !ImageName.isEmpty() && !ImageLink.isEmpty() && !TextName.isEmpty() && !TextLink.isEmpty()) {
             val ImageNameForFirebase = ImageName.replace(".", "")

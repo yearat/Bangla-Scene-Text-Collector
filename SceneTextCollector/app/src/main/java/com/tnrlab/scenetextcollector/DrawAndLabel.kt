@@ -48,7 +48,6 @@ class DrawAndLabel : AppCompatActivity() {
     private lateinit var addLabel: Button
     private lateinit var printTv: TextView // For testing purposes
     private lateinit var resetBtn: Button
-    private lateinit var testBtn: Button
     private lateinit var nextBtn: Button
     private lateinit var singleObject: drawnObject // Class for a drawn object
     private var objectList = mutableListOf<drawnObject>() // For keeping drawn objects
@@ -74,7 +73,6 @@ class DrawAndLabel : AppCompatActivity() {
         addLabel = findViewById<Button>(R.id.addLabel)
         printTv = findViewById<TextView>(R.id.printTv)
         resetBtn = findViewById<Button>(R.id.resetBtn)
-        testBtn = findViewById<Button>(R.id.testBtn)
         nextBtn= findViewById<Button>(R.id.nextBtn)
         objectCountTv = findViewById<TextView>(R.id.objectCountTv)
         printTv.text = "Status: Drawing"
@@ -113,9 +111,7 @@ class DrawAndLabel : AppCompatActivity() {
         }
 
 
-        testBtn.setOnClickListener() {
-            testAFunction()
-        }
+
 
 
         nextBtn.setOnClickListener() {
@@ -171,17 +167,17 @@ class DrawAndLabel : AppCompatActivity() {
 
                 when (action) {
                     MotionEvent.ACTION_DOWN -> {
-                        textSource.text = "ACTION_DOWN- $x : $y"
+                        //textSource.text = "ACTION_DOWN- $x : $y"
                         startX = x
                         startY = y
                         startPt = projectXY(v as ImageView, bitmapMaster, x, y)!!
                     }
                     MotionEvent.ACTION_MOVE -> {
-                        textSource.text = "ACTION_MOVE- $x : $y"
+                        //textSource.text = "ACTION_MOVE- $x : $y"
                         drawOnRectProjectedBitMap(v as ImageView, bitmapMaster, x, y)
                     }
                     MotionEvent.ACTION_UP -> {
-                        textSource.text = "ACTION_UP- $x : $y"
+                        //textSource.text = "ACTION_UP- $x : $y"
                         drawOnRectProjectedBitMap(v as ImageView, bitmapMaster, x, y)
                         endX = x
                         endY = y
@@ -249,8 +245,8 @@ class DrawAndLabel : AppCompatActivity() {
             )
 
             imageDrawingPane.invalidate()
-            textSource.text = x.toString() + ":" + y + "/" + iv.width + " : " + iv.height + "\n" +
-                    projectedX + " : " + projectedY + "/" + bm.width + " : " + bm.height
+            /* textSource.text = x.toString() + ":" + y + "/" + iv.width + " : " + iv.height + "\n" +
+                    projectedX + " : " + projectedY + "/" + bm.width + " : " + bm.height */
         }
     }
 
@@ -305,6 +301,11 @@ class DrawAndLabel : AppCompatActivity() {
                 break
             } else {
                 textSource.text = " Object not found "
+                Toast.makeText(
+                    this,
+                    "Object not found",
+                    Toast.LENGTH_SHORT
+                ).show()
                 continue
             }
         }

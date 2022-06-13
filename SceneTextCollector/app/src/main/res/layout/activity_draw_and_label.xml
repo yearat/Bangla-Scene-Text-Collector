@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:autoLink="web"
-        android:text="Draw Boxes"
+        android:text="Annotation"
         android:textStyle="bold" />
 
 
@@ -30,11 +30,6 @@
         android:text="Reset"
         android:backgroundTint="@color/Button2" />
 
-    <Button
-        android:id="@+id/testBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Test A Function" />
 
     <Button
         android:id="@+id/nextBtn"
