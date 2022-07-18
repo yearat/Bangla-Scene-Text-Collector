@@ -1,3 +1,0 @@
-label: desher, start: 36, 219, end: 501, 379
-label: brihottomo, start: 179, 383, end: 798, 617
-label: nothing, start: 539, 715, end: 808, 942

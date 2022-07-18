@@ -49,7 +49,7 @@ class Upload : AppCompatActivity() {
         var TextFileLink: String? = null
         var imageFileName : String? = null
         var textFileName : String? = null
-        val currentTime = System.currentTimeMillis()
+        val currentTime = System.currentTimeMillis() / 1000
 
         progressBar.visibility = View.GONE
         progressBarTv.visibility = View.GONE

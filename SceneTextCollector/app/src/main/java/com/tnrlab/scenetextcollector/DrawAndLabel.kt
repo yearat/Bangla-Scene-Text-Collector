@@ -122,7 +122,7 @@ class DrawAndLabel : AppCompatActivity() {
 //                    Toast.LENGTH_SHORT
 //                ).show()
 //            }
-            if ((textUri != null) && (objectCount != 0) && (labelCount == objectCount) && (labeling==false)) {
+            if ((textUri != null) && (objectCount != 0) && (labelCount >= objectCount) && (labeling==false)) {
                 writeToTextFile()
                 var intent = Intent(this, Upload::class.java)
                 intent.putExtra("ImageUri", imageUri)
@@ -144,7 +144,7 @@ class DrawAndLabel : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-                if(labelCount != objectCount) {
+                if(labelCount < objectCount) {
                     Toast.makeText(
                         this,
                         "Must label all the drawn objects!",
@@ -301,11 +301,6 @@ class DrawAndLabel : AppCompatActivity() {
                 break
             } else {
                 textSource.text = " Object not found "
-                Toast.makeText(
-                    this,
-                    "Object not found",
-                    Toast.LENGTH_SHORT
-                ).show()
                 continue
             }
         }

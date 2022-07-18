@@ -1,1 +1,0 @@
-label: cat, start: 236, 19, end: 817, 978
